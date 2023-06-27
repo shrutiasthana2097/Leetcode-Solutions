@@ -1,17 +1,22 @@
 class Solution {
-    public boolean containsDuplicate(int[] nums) {
-        
-        Set<Integer> numSet = new HashSet<>();
-        for(int i=0;i<nums.length;i++)
-        {
-            numSet.add(nums[i]);
-        }
+    public int[] twoSum(int[] nums, int target) {
 
-        if(numSet.size()<nums.length)
-        {
-            return true;
-        }
-        else
-        return false;
+       Map<Integer,Integer> numMap = new HashMap<>();
+       int[] solution;
+       for(int i=0;i<nums.length;i++)
+       {
+           numMap.put(nums[i],i);
+       } 
+
+       for(int i=0;i<nums.length;i++)
+       {
+           int temp = target - nums[i];
+           if(numMap.containsKey(temp) && numMap.get(temp) != i)
+           {
+               return new int[] { i, numMap.get(temp) };
+              
+            }
+       }  
+       return null;
     }
 }
